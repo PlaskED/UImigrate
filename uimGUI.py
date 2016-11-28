@@ -31,8 +31,8 @@ entries[11].insert(INSERT, 'newchar')
 for ent in entries:
     ent.pack()
 
-# Print the contents of entry widget to console
 def migrate():
+    """Where the magic happens"""
     indata = []
     for ent in entries:
         if type(ent) == Entry and ent.get().strip() != '':
@@ -45,13 +45,13 @@ def migrate():
         status.set("Error: Empty field(s)")
         return
 
-    oldDirs = uimFuncs.getDirs(indata[0],indata[2], indata[4])
-    newDirs = uimFuncs.getDirs(indata[1],indata[3], indata[5])
-    print("oldDirs: ", oldDirs)
-    print("newDirs: ", newDirs)
+    oldPath = uimFuncs.getPaths(indata[0],indata[2], indata[4])
+    newPath = uimFuncs.getPaths(indata[1],indata[3], indata[5])
+    #print("oldPath: ", oldPath)
+    #print("newPath: ", newPath)
 
     status.set("Migrating account...")
-    uimFuncs.migrateAccount(oldDirs["account"], newDirs["account"])
+    uimFuncs.migrateAccount(oldPath, newPath)
 
     status.set("Done!")
     return
