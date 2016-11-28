@@ -1,4 +1,5 @@
 # set_window_geometry.py
+import uimfunctions
 from tkinter import Tk, Label, Button, Entry, INSERT
 root = Tk()
 
@@ -20,10 +21,11 @@ for ent in entries:
     ent.pack()
 
 # Print the contents of entry widget to console
-def print_content():
+def print_content(entries):
     for ent in entries:
          if type(ent) == Entry:
              print(ent.get())
+
 
 # Create a button that will print the contents of the entry
 run_button = Button(root, text='Migrate', command=print_content)
